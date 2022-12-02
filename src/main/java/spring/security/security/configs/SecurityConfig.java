@@ -12,15 +12,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @RequiredArgsConstructor
 @EnableWebSecurity
 @Slf4j
 public class SecurityConfig {
-    private final UserDetailsService userDetailsService;
-    private final AuthenticationProvider authenticationProvider;
-    private final AuthenticationDetailsSource authenticationDetailsSource;
+//    private final UserDetailsService userDetailsService;
+//    private final AuthenticationProvider authenticationProvider;
+//    private final AuthenticationDetailsSource authenticationDetailsSource;
+    private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -38,12 +40,13 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
                 .and()
 //                .userDetailsService(userDetailsService)
-                .authenticationProvider(authenticationProvider)
+//                .authenticationProvider(authenticationProvider)
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login_proc")
-                .authenticationDetailsSource(authenticationDetailsSource)
                 .defaultSuccessUrl("/")
+//                .authenticationDetailsSource(authenticationDetailsSource)
+                .successHandler(authenticationSuccessHandler)
                 .permitAll();
 
 

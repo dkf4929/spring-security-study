@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/header::userHead"></head>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko-kr">
+<head th:replace="layout/header :: userHead"><title></title></head>
 <body>
-<div th:replace="layout/top::header"></div>
+<div th:replace="layout/top :: header"></div>
 <div class="container text-center">
     <div class="login-form d-flex justify-content-center">
         <div class="col-sm-5" style="margin-top: 30px;">
@@ -10,9 +10,10 @@
                 <p>아이디와 비밀번호를 입력해주세요</p>
             </div>
             <form th:action="@{/login_proc}" class="form-signin" method="post">
-                <input th:type="hidden" th:value="secret" name="secret_key">
+                <input type="hidden" th:value="secret" name="secret_key"/>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="username" placeholder="아이디" required="required" autofocus="autofocus">
+                    <input type="text" class="form-control" name="username" placeholder="아이디" required="required"
+                           autofocus="autofocus">
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" name="password" placeholder="비밀번호" required="required">

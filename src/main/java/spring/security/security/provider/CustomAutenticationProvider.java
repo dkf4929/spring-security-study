@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import spring.security.security.common.FormWebAuthenticationDetails;
 import spring.security.security.service.AccountContext;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class CustomAutenticationProvider implements AuthenticationProvider {
     private UserDetailsService userDetailsService;
@@ -39,8 +39,7 @@ public class CustomAutenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("BadCredentialException");
         }
 
-        FormWebAuthenticationDetails details = (FormWebAuthenticationDetails) authentication.getDetails();
-        String secretKey = details.getSecretKey();
+        String secretKey = ((FormWebAuthenticationDetails) authentication.getDetails()).getSecretKey();
 
         if (secretKey == null || !"secret".equals(secretKey)) {
             throw new InsufficientAuthenticationException("InsufficientAuthenticationException");

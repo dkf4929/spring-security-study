@@ -8,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -16,7 +15,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login() {
-        return "user/login/login";
+        return "/login";
     }
 
     @GetMapping("/logout")
@@ -28,10 +27,5 @@ public class LoginController {
             new SecurityContextLogoutHandler().logout(request, response, authentication);
         }
         return "redirect:/login";
-    }
-
-    @PostMapping("/login_proc")
-    public String loginProc() {
-        return null;
     }
 }
