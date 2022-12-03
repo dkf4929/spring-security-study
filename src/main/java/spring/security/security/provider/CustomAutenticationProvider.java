@@ -17,15 +17,13 @@ import spring.security.security.common.FormWebAuthenticationDetails;
 import spring.security.security.service.AccountContext;
 
 //@Component
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class CustomAutenticationProvider implements AuthenticationProvider {
-    private UserDetailsService userDetailsService;
+    @Autowired private UserDetailsService userDetailsService;
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public CustomAutenticationProvider(@Lazy PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
+    public CustomAutenticationProvider(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
-        this.userDetailsService = userDetailsService;
     }
 
     @Override
